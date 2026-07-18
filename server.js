@@ -6,19 +6,18 @@ const { initializeApp, cert } = require('firebase-admin/app');
 const { getFirestore, FieldValue } = require('firebase-admin/firestore'); 
 const geoip = require('geoip-lite');
 
-require('dotenv').config();
-
+// Initialize Firebase with hardcoded credentials (no .env required)
 initializeApp({
   credential: cert({
-    projectId: process.env.FIREBASE_PROJECT_ID,
-    clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-    privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    projectId: "pvp-video",
+    clientEmail: "firebase-adminsdk-fbsvc@pvp-video.iam.gserviceaccount.com",
+    privateKey: `-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDFK+ib+m2IljnQ\nMkYuRv1TxId9q8UroBI7dN0Z0kTlxPrst97Q2Otvq8gqGt/lUjG3leMCq8gmYPHg\nrCpXyBQFUgv/OApWLllytI1uhBDm0IMNP7Wf/sgXieXnphJVYOqBV464vCl12hIE\nOgTKOZcmBA/J+0FMRw77gzpJLM6EdP0H8o6nZT7VMZVckt2372Fdf0b3qGgOYBTE\n0HldZgWkE8vPFr6HQyahIzaAXdn5qdZgHssebCFPPRzslNtFf83fsE0effAtpH5j\nlJVJnerY83TgPrftu0ls0ZmNmQuF2LyMCH/PP0CCM7yKjUke5V5VBRyRkwdvfn04\nZA49jHl1AgMBAAECggEAMIvHEeBu55pVUbWPIgXIib9xvLd2LG+VDZ6QcbMb05bU\nUURUUAeYsD4TYoqLZeL+6ry00AuLlCd6Zl79be+NPmIdIhGiOeXfkCZ0TCmoH6xn\nF/P/vAz3JxSEzqxNB0h9dKsiMMnjS2kN1oyScVgMpweI+6opQaadQb/lse6eSm40\n3C1FiJVuj0RsPrGOK+elTiicQeCSn0s9I4+sXZNrqyMp0i8Ix8cX4n5oGyGdezWg\nwZxLf+jkB1S4LBJIjxdwaCPav3QWVRWRajbNtU5RKm8Q2jVp7XLYmJM49KWrFn3O\nLLR/kUHXh34VfL59W19yq1Vw3C00i9ZwOoK77MloYQKBgQDhi0z/Akyc/uD0RAFc\n3K0vW2MMazEXaysZuTmma0PCPHTlt4+Y5UG0q5A5meAbm6LpJYFewclr95cT/l5d\nVIXSrMIaF23/hkfUrr17pqAQge4f+HKz3ZijMcjLS1n0SxTwmQ1t8HVY0tKItFoV\nz0RzOOsM7IC2jnzHdFRLM+298wKBgQDfy8/MeWNm/4RbfmTgd+n3R1C8WX56ZY6k\nwgaEC2UBDEGId1b/Mc8wkddbbqZ5wNltDPhYPdnbSc1jaasPHgiVy60K/rQ2D6EY\n5I8jFzAC0NyJrze00Z1JRSCkgPejaVSqp+2MYoKwlIKhc6VlalUtcgaTXQLR8POO\nqLn869X89wKBgQC487BqFYqZ23DBHds4OUZTZU9t6aDSIXGwoHGkBKYF6+m4TrSU\nnrso2t9kPMjIGvKW2cii2arAvMHJBXiAdEVhI4XwO3JabdUNlVWQxmzP3JxW3zfA\nQ2Fdwf90pg/YApHjUr7ufpbcBdXbgHm3FMZ+7hfh+zb5fRLZxI0zNhwo/QKBgDp7\nYjQGzKkPwKDAKNBXxbYu1rRBlsGZZGs9oMJE0AI0F7P3q65Ib+I7WlG0WqCaerb6\nmrNEhne9k4SVCnSK3qd2cCPdZ25xKyH8KEN9Pbiep+L6/M2tsTKCdANJCG2ViuCF\nvZff7lMCnBhgxin4XYXgtEMyHRiLpLn08ZVcc7EFAoGBALrsNba3F8+b+T1pHs90\nM6PPq/mI/oiOY00JbCQ1ob0j3Q8iJ/vVtXrm5JNXaRcHBC/ujaYSHbamDkuj1jNg\ne4kqltwkUTn9C3V45HbmR4iKbxhz905/c1yf5MfT6GtI/hk27FOn6d/u467daPfR\nTGJdtL3p932katglGHlJ465w\n-----END PRIVATE KEY-----\n`.replace(/\\n/g, '\n'),
   })
 });
 
 const db = getFirestore();
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = 8080;
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
